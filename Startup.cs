@@ -40,7 +40,7 @@ namespace URLService
 
                     Title = "URLService",
                     Version = "v1",
-                    Description = "An .Net Service Academic",
+                    Description = ".Net Service Academic",
                     TermsOfService = new Uri("https://github.com/Gomes-Gomes/URLService"),
                     Contact = new OpenApiContact
                     {
@@ -77,8 +77,9 @@ namespace URLService
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
+            //comentamos o modo de dev para testes
+            //if (env.IsDevelopment())
+            //{
                 app.UseStaticFiles();
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
@@ -89,9 +90,12 @@ namespace URLService
                     c.InjectStylesheet("/swagger-ui/SwaggerDark.css");
 
                 });
-            }
+            //}
 
-            app.UseHttpsRedirection();
+            //Tiveos de Remover para correr o Cntainer no Docker
+            //warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+            //Failed to determine the https port for redirect.
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

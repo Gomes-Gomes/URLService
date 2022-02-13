@@ -85,3 +85,23 @@ git remote add origin https://github.com/Gomes-Gomes/URLService.git
 git push -u origin main
 
 ````
+
+## Docker
+
+We add dockerFile dockerignore and docker compose
+
+Run docker build then docker run while expose port 5001
+
+````bash
+docker build -t urlservice -f Dockerfile .
+
+docker run -p 5001:80 urlservice
+
+
+````
+
+or
+
+````bash
+docker-compose up
+````
