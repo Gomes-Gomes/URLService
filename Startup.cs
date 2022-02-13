@@ -77,6 +77,14 @@ namespace URLService
                 }
             });
             services.AddHealthChecks();
+            //Configurando a interface gráfica e o armazenamento do histórico
+            services.AddHealthChecksUI(options =>
+            {
+                options.SetEvaluationTimeInSeconds(5);
+                options.MaximumHistoryEntriesPerEndpoint(10);
+                //options.AddHealthCheckEndpoint("API com Health Checks", "/health");
+            })
+            .AddInMemoryStorage(); //Aqui adicionamos o banco em memória
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,16 +93,16 @@ namespace URLService
             //comentamos o modo de dev para testes
             //if (env.IsDevelopment())
             //{
-                app.UseStaticFiles();
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "URLService v1");
-                    c.RoutePrefix = string.Empty;
-                    c.InjectStylesheet("/swagger-ui/SwaggerDark.css");
+            app.UseStaticFiles();
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "URLService v1");
+                c.RoutePrefix = string.Empty;
+                c.InjectStylesheet("/swagger-ui/SwaggerDark.css");
 
-                });
+            });
             //}
 
             //Tiveos de Remover para correr o Cntainer no Docker
@@ -141,6 +149,14 @@ namespace URLService
                 }
 
             });
+
+
+            app.UseHealthChecksUI(options => { options.UIPath = "/healthz"; });
+
+
+
+
+
         }
     }
 }

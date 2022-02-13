@@ -111,3 +111,13 @@ docker-compose up
 <http://localhost:5000/quickhealth>
 
 <http://localhost:5000/health>
+
+````bash
+dotnet add package AspNetCore.HealthChecks.UI --version 5.0.1
+dotnet add package AspNetCore.HealthChecks.UI.Client --version 5.0.1
+dotnet add package AspNetCore.HealthChecks.UI.InMemory.Storage --version 5.0.1
+
+````
+
+HealthChecksUI NOT FINISH WE HAVE TO ADD HEALTHCKECS ENDPOINTS COMPATIBLE
+<http://localhost:5000/healthz>
