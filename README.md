@@ -105,3 +105,9 @@ or
 ````bash
 docker-compose up
 ````
+
+## HealthChecks
+
+<http://localhost:5000/quickhealth>
+
+<http://localhost:5000/health>
